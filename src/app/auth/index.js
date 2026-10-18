@@ -2,6 +2,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
+  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -38,7 +39,9 @@ const AuthScreen = () => {
     }
 
     if (response?.error) {
-      Alert.alert(response?.error.message);
+      Alert.alert("Error", response?.error);
+      setError(response?.error);
+      return;
     }
 
     router.replace("/notes");
@@ -58,6 +61,7 @@ const AuthScreen = () => {
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
+        inputMode="email"
       />
       <TextInput
         style={styles.input}
@@ -83,8 +87,8 @@ const AuthScreen = () => {
       )}
 
       {/* Button */}
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText} onPress={handleAuth}>
+      <TouchableOpacity style={styles.button} onPress={handleAuth}>
+        <Text style={styles.buttonText}>
           {isRegistering ? "SignUp" : "Login"}
         </Text>
       </TouchableOpacity>
