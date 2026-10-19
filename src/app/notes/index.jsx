@@ -117,8 +117,12 @@ const NoteScreen = () => {
       ) : (
         <>{error && <Text style={styles.errorText}>{error}</Text>}</>
       )}
-      <NoteList notes={notes} onDelete={deleteNote} onEdit={editNote} />
 
+      {notes.length === 0 ? (
+        <Text style={styles.noNotes}>Lets Start By Creating a Note</Text>
+      ) : (
+        <NoteList notes={notes} onDelete={deleteNote} onEdit={editNote} />
+      )}
       <TouchableOpacity
         style={styles.addButton}
         onPress={() => setModalVisible(true)}
@@ -164,6 +168,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 10,
     fontSize: 16,
+  },
+  noNotes: {
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#555",
+    marginTop: 15,
   },
 });
 
