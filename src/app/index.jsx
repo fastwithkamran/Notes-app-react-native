@@ -1,8 +1,34 @@
 import image from "@/assets/images/welcome_img.png";
-import { router } from "expo-router";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const HomeScreen = () => {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.replace("/notes");
+    }
+  }, [user, loading]);
+
+  if (loading) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size={"large"} color="#007bff" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Image source={image} style={styles.image} />
@@ -50,6 +76,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  loading: {
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
   },
 });
 
