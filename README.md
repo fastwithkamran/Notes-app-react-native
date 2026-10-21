@@ -4,7 +4,13 @@ A cross-platform notes app built with React Native and Expo. Users can create an
 
 ## App link
 
-The app link will be added here when the app is built and published.
+Download the [Android build on Expo](https://expo.dev/accounts/fastwithkamran/projects/notes-app/builds/c3eda926-6ce5-49c9-9134-4d2f25836f2d), or scan the QR code:
+
+<p align="center">
+  <a href="https://expo.dev/accounts/fastwithkamran/projects/notes-app/builds/1f83f327-c80f-4e82-bca2-c32641cbc345">
+    <img src="./public/qr_code.png" alt="QR code for the Android build on Expo" width="220">
+  </a>
+</p>
 
 ## Tech stack
 
@@ -61,6 +67,7 @@ From the project folder, run this command to start an Android build with EAS:
 
 ```bash
 eas build --platform android
+eas build --platform android --profile preview
 ```
 
 If EAS asks you to sign in, follow the prompts in the terminal. When the build finishes, Expo provides a link to download the app.
